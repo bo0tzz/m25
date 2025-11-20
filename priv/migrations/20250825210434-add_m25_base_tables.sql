@@ -1,3 +1,4 @@
+--- migration:up
 create schema if not exists m25;
 
 create table if not exists m25.job (
@@ -49,3 +50,9 @@ create table if not exists m25.version (
   version timestamptz not null primary key,
   created_at timestamptz not null default now()
 );
+--- migration:down
+drop table m25.version;
+drop table m25.job;
+drop schema m25;
+
+--- migration:end
